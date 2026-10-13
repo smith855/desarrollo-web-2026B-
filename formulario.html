@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="responsivo.css">
+</head>
+<link rel="stylesheet" href="estilos.css">
+<body>
+    <header>
+        <h1>Formulario</h1>
+        <nav>
+             <title>Ropa Llanera - Contacto</title>
+    <title>Document</title>
+       <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="precios.html">Catálogo y Precios</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+</head>
+<body>
+<form action="registro.php" method="post">
+
+<fieldset>
+    <legend>Datos del cliente</legend>
+    <p>
+    <label for="nombre">Nombre completo</label>
+    <input type="text" id="nombre" name="nombre"
+           required
+           minlength="5"maxlength="80">
+</p>
+
+<p>
+    <label for="cedula">Número de cédula</label>
+    <input type="text" id="cedula" name="cedula"
+           required
+           pattern="[0-9]{6,10}"
+           title= "entre 6 y 10 digitos,sin puntos">
+</p>
+
+<p>
+<label for="correo">Correo electrónico</label>
+<input type="email" id="correo" name="correo">
+</p>
+
+<p>
+<label for="celular">Celular</label>
+<input type="tel" id="celular" name="celular">
+</p>
+
+</fieldset>
+
+
+<fieldset>
+<p>
+<label for="Ropa">Ropa</label>
+<input type="number" id="ropa"
+       name="ropa"
+       min="0.5" max="500" step="0.5"
+       required>
+</p>
+
+<p>
+<label for="siembra">Fecha de pedido</label>
+<input type="date" id="fecha de pedido" name="fecha de pedido"
+min="2026-01-01" max="2026-12-31" >
+</p>
+
+<p>
+<label for="Tipo de Ropa">Tipo de Ropa</label>
+<select id="Tipo de Ropa" name="Tipo de Ropa">
+    <option value="">Seleccione una opción</option>
+    <option value="Sombrero Pelo e' Guama">Sombrero Pelo e' Guama</option>
+    <option value="Liquiliqui ">Liquiliqui </option>
+</select>
+</p>
+
+<p>
+<label for="Sitio">Sitio</label>
+<input list="sitios" id="Sitio" name="sitio">
+<datalist id="sitios">
+    <option value="yopal"></option>
+    <option value="aguazul"></option>
+</datalist>
+</p>
+</fieldset>
+
+
+
+
+
+<fieldset>
+    <legend>Datos del producto</legend>
+
+    <p>
+        <label for="obs">Observaciones</label>
+        <textarea id="obs" name="obs"
+            rows="4" maxlength="300"></textarea>
+    </p>
+
+    <p>
+        <input type="checkbox" id="datos" name="datos">
+        <label for="datos">Autorizo el tratamiento
+            de mis datos personales</label>
+    </p>
+
+</fieldset>
+
+    <p>
+        <button type="submit">Enviar</button>
+    </p>
+
+</form>
+
+</body>
+</html>

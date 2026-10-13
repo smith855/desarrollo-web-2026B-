@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="responsivo.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <ul>
+                <li><a href="index.html">Inicio</a></li>
+    <title>Calculadora de Compra - Ropa Llanera</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #f4f7f6;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #34495e;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .results {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #e8f8f5;
+            border-left: 5px solid #2ecc71;
+            border-radius: 4px;
+        }
+        .results p {
+            margin: 8px 0;
+            font-size: 1.05em;
+            color: #2c3e50;
+        }
+        .results span {
+            font-weight: bold;
+            color: #27ae60;
+        }
+        .error {
+            color: #e74c3c !important;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Cotizador de Compra - Ropa Llanera</h2>
+
+    <!-- Formulario para ingreso de cantidades -->
+    <div class="form-group">
+        <label for="cantSombreros">Sombrero Pelo e' Guama ($150.000 COP):</label>
+        <input type="number" id="cantSombreros" value="0" min="0">
+    </div>
+
+    <div class="form-group">
+        <label for="cantLiquiliqui">Liquiliqui Completo ($280.000 COP):</label>
+        <input type="number" id="cantLiquiliqui" value="0" min="0">
+    </div>
+
+    <div class="form-group">
+        <label for="cantCotizas">Cotizas de Cuero ($60.000 COP):</label>
+        <input type="number" id="cantCotizas" value="0" min="0">
+    </div>
+
+    <div class="form-group">
+        <label for="cantCinturones">Cinturón Llanero ($45.000 COP):</label>
+        <input type="number" id="cantCinturones" value="0" min="0">
+    </div>
+
+    <!-- Contenedor para mostrar resultados en el DOM -->
+    <div class="results">
+        <p>Total de Prendas: <span id="out-prendas">0</span></p>
+        <p>Total a Pagar: <span id="out-total">$ 0 COP</span></p>
+    </div>
+
+    <script>
+        // --- PRECIOS CONSTANTES DE PRODUCTOS ---
+        const PRECIOS = {
+            sombrero: 150000,
+            liquiliqui: 280000,
+            cotiza: 60000,
+            cinturon: 45000
+        };
+
+        // CONEXIÓN AL DOM
+        // 1. Seleccionar elementos del HTML
+        const inputSombreros = document.getElementById('cantSombreros');
+        const inputLiquiliqui = document.getElementById('cantLiquiliqui');
+        const inputCotizas = document.getElementById('cantCotizas');
+        const inputCinturones = document.getElementById('cantCinturones');
+
+        const outPrendas = document.getElementById('out-prendas');
+        const outTotal = document.getElementById('out-total');
+
+        // 2. Función principal para calcular el valor total
+        function calcularYMostrar() {
+            // Leer las cantidades introducidas por el usuario
+            const cantSombreros = parseInt(inputSombreros.value) || 0;
+            const cantLiquiliqui = parseInt(inputLiquiliqui.value) || 0;
+            const cantCotizas = parseInt(inputCotizas.value) || 0;
+            const cantCinturones = parseInt(inputCinturones.value) || 0;
+
+            // Operaciones matemáticas
+            const totalPrendas = cantSombreros + cantLiquiliqui + cantCotizas + cantCinturones;
+            const totalPagar = (cantSombreros * PRECIOS.sombrero) +
+                               (cantLiquiliqui * PRECIOS.liquiliqui) +
+                               (cantCotizas * PRECIOS.cotiza) +
+                               (cantCinturones * PRECIOS.cinturon);
+
+            // Formatear el número a moneda
+            const totalFormateado = new Intl.NumberFormat('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                minimumFractionDigits: 0
+            }).format(totalPagar);
+
+            // Actualizar la interfaz
+            outPrendas.textContent = totalPrendas;
+            outTotal.textContent = totalFormateado;
+        }
+
+        // 3. Escuchar eventos de entrada de datos
+        inputSombreros.addEventListener('input', calcularYMostrar);
+        inputLiquiliqui.addEventListener('input', calcularYMostrar);
+        inputCotizas.addEventListener('input', calcularYMostrar);
+        inputCinturones.addEventListener('input', calcularYMostrar);
+
+        // 4. Ejecución inicial al cargar
+        calcularYMostrar();
+    </script>
+
+</body>
+</html>
